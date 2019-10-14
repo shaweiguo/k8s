@@ -1,10 +1,10 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: httpbin-gateway
+  name: helloworld-gateway
 spec:
   selector:
-    istio: ingressgateway
+    istio: ingressgateway # use istio default controller
   servers:
   - port:
       number: 80
@@ -16,15 +16,18 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: httpbin
+  name: helloworld
 spec:
   hosts:
   - "*"
   gateways:
-  - httpbin-gateway
+  - helloworld-gateway
   http:
-  - route:
+  - match:
+    - uri:
+        exact: /hello
+    route:
     - destination:
-        host: httpbin
+        host: helloworld
         port:
-          number: 8000
+          number: 5000
