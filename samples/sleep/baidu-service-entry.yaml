@@ -18,7 +18,7 @@ metadata:
   name: baidu.com
 spec:
   hosts:
-  - baidu.com
+  - www.baidu.com
   tls:
   - match:
     - port: 443
